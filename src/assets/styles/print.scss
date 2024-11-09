@@ -1,0 +1,74 @@
+// 打印控制
+@media print {
+    @page {
+        // size: 210mm 297mm;
+        // size: A4 portrait;
+        // margin: 20px;
+    }
+
+    .el-table .el-table__header,
+    .el-table .el-table__body,
+    .el-table-v2__table,
+    .el-table-v2__header-row,
+    .el-table-v2__footer,
+    .el-table-v2__row {
+        width: 100vw !important;
+        // height: 80vh !important;
+        // table-layout: auto;
+        // position: absolute;
+        // height: 60% !important;
+    }
+
+    .selected .el-table__row {
+        display: none;
+    }
+
+    .el-table__row:has(.cell .is-checked) {
+        display: table-row !important;
+    }
+
+    .el-table table th:first-child+th,
+    .el-table table td:first-child+td {
+        width: 55px !important;
+        // color: red !important;
+    }
+
+    .el-table__header {
+        page-break-after: verso !important;
+    }
+
+    // .el-table__body {
+    //   page-break-before: always !important;
+    // }
+
+    .el-table .el-table__body tr,
+    .el-table .el-table__body td {
+        page-break-inside: avoid !important;
+        page-break-before: avoid !important;
+        page-break-after: auto !important;
+    }
+
+    .el-table .action,
+    .el-table table col,
+    .el-table-column--selection {
+        width: auto;
+        display: none !important;
+    }
+
+    //超过一行显示省略号
+    // .el-table table td .cell {
+    //   // text-overflow: ellipsis;
+    //   // overflow: hidden;
+    //   white-space: nowrap;
+    // }
+    // 去掉空白页
+    html,
+    body {
+        // margin: 0px;
+        height: 90vh;
+    }
+
+    .selected.el-table--striped .el-table__body tr.el-table__row--striped td.el-table__cell {
+        background: #fff !important;
+    }
+}

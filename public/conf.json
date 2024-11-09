@@ -1,0 +1,64 @@
+{
+    "default_server_config": {
+        "login_server": {
+            "base_url": "http://116.204.124.54:1110/v1/",
+            "server_name": "system login server"
+        },
+        "main_server": {
+            "base_url": "http://116.204.124.54:2110/v1/",
+            "server_name": "trade main server"
+        },
+        "msg_server": {
+            "base_url": "ws://116.204.124.54:3112/message",
+            "server_name": "websocket message server"
+        }
+    },
+    "default_printer_config": {
+        "tmp_id": "1"
+    },
+    "key": "1234567890",
+    "contact": {
+        "name": "ddx",
+        "addr": "shenzhen"
+    },
+    "project": {
+        "title": "华商贸易",
+        "name": "华商贸易管理系统"
+    },
+    "guid": true,
+    "pre_define": {
+        "fields_cname": {
+            "stage": {
+                "0": "初始",
+                "1": "生产中",
+                "2": "检验中",
+                "3": "完成"
+            },
+            "delete_flag": {
+                "0": "未删除",
+                "1": "删除"
+            },
+            "enable": {
+                "0": "未启用",
+                "1": "启用"
+            }
+        },
+        "status_cname": {
+            "user": {
+                "1": "正常",
+                "2": "删除",
+                "3": "封禁"
+            },
+            "gc_flaw_types": {
+                "1": "正常",
+                "2": "取消",
+                "3": "封禁"
+            },
+            "gc_order_assign": {
+                "1": "正常",
+                "2": "取消",
+                "3": "封禁"
+            }
+        }
+    }
+}
