@@ -28,7 +28,13 @@ console.log(props.date)
 <template>
     <el-select filterable remote remote-show-suffix :remote-method="getMaterUnit" placeholder="请选择产品单位"
         style="width:100%">
-        <el-option v-for="item in materUnitList" :key="item.id" :label="item.basic_unit"
-            :value="item.basic_unit"></el-option>
+        <el-option v-for="item in materUnitList" :key="item.id" :label="item.name" :value="item.name">
+            <el-row>
+                <el-col class="ellipsis" :span="5">{{ item.basic_unit }}</el-col>
+                <el-col class="ellipsis" :span="10">{{ item.name }}</el-col>
+                <el-col class="ellipsis" :span="5">{{ item.other_unit }}</el-col>
+                <el-col class="ellipsis" :span="4">{{ item.tenant_id }}</el-col>
+            </el-row>
+        </el-option>
     </el-select>
 </template>

@@ -28,6 +28,14 @@ console.log(props.date)
 <template>
     <el-select filterable remote remote-show-suffix :remote-method="getSupplier" placeholder="请选择供应商"
         style="width:100%">
-        <el-option v-for="item in supplierList" :key="item.id" :label="item.supplier" :value="item.id + ''"></el-option>
+        <el-option v-for="item in supplierList" :key="item.id" :label="item.supplier" :value="item.id + ''">
+            <el-row>
+                <el-col class="ellipsis" :span="8">{{ item.supplier }}</el-col>
+                <el-col class="ellipsis" :span="4">{{ item.contacts }}</el-col>
+                <el-col class="ellipsis" :span="6">{{ item.address }}</el-col>
+                <el-col class="ellipsis" :span="4">{{ item.type }}</el-col>
+                <el-col class="ellipsis" :span="2">{{ item.tenant_id }}</el-col>
+            </el-row>
+        </el-option>
     </el-select>
 </template>

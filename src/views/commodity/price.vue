@@ -79,6 +79,29 @@ const dateChange = (val) => {
     console.log('dateChange: ', val)
     searchForm.date = val
 }
+const materTypeList = (val) => {
+    // console.log('选中的id: ', editForm.material_type_id)
+    if (editForm.material_type_id != '' && val.length > 0) {
+        val.forEach(element => {
+            if (element.material_id == editForm.material_type_id) {
+                console.log('element: ', element)
+                // 自动填充数据
+                // 零售价
+                editForm.delivery = element.delivery
+                // 成本价
+                editForm.price_default = element.price_default
+                // 品质
+                // editForm.quantity = element.quality
+                // 颜色
+                editForm.color = element.color
+                // 质保期
+                editForm.expiry_num = element.category
+                // 区域
+                // editForm.location = element.location
+            }
+        });
+    }
+}
 </script>
 <template>
     <ListPage :tableData="data" :tableColumns="columns" :editForm="editForm" :editRules="editRules"
@@ -99,7 +122,7 @@ const dateChange = (val) => {
             <el-row>
                 <el-col :span="11">
                     <el-form-item label="产品类型" prop="material_type_id">
-                        <mater-type-selector v-model="editForm.material_type_id" />
+                        <mater-type-selector v-model="editForm.material_type_id" @materTypeList="materTypeList" />
                     </el-form-item>
                     <el-form-item label="产品名称" prop="name">
                         <el-input v-model="editForm.name" placeholder="请输入产品名称"></el-input>

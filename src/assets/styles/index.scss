@@ -189,3 +189,12 @@ aside {
 .el-table-v2__cell-text:empty::before {
   content: '--'
 }
+
+.ellipsis {
+  white-space: nowrap;
+  /* 确保文本在一行内显示 */
+  overflow: hidden;
+  /* 超出容器部分隐藏 */
+  text-overflow: ellipsis;
+  /* 使用省略号表示被截断的文本 */
+}
