@@ -26,8 +26,7 @@ getMaterUnit()
 console.log(props.date)
 </script>
 <template>
-    <el-select filterable remote remote-show-suffix :remote-method="getMaterUnit" placeholder="请选择产品单位"
-        style="width:100%">
+    <el-select filterable remote remote-show-suffix :remote-method="getMaterUnit" placeholder="请选择产品单位">
         <el-option v-for="item in materUnitList" :key="item.id" :label="item.name" :value="item.name">
             <el-row>
                 <el-col class="ellipsis" :span="5">{{ item.basic_unit }}</el-col>

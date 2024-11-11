@@ -198,3 +198,7 @@ aside {
   text-overflow: ellipsis;
   /* 使用省略号表示被截断的文本 */
 }
+
+.el-dialog__body .el-select {
+  width: 100%;
+}

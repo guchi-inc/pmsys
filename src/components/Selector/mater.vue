@@ -29,8 +29,7 @@ getMaterType()
 console.log(props.date)
 </script>
 <template>
-    <el-select filterable remote remote-show-suffix :remote-method="getMaterType" placeholder="请选择产品类型"
-        style="width:100%">
+    <el-select filterable remote remote-show-suffix :remote-method="getMaterType" placeholder="请选择产品类型">
         <el-option v-for="item in materTypeList" :key="item.id" :label="item.type_name" :value="item.material_id">
             <el-row>
                 <el-col class="ellipsis" :span="10">{{ item.type_name }}</el-col>
