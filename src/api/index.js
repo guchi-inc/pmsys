@@ -33,13 +33,16 @@ export const updateDepot = (parameter) => {
     return login_server.post('/depot/update', parameter)
 }
 /**
- * 报表查询
+ * 订单
  */
-// 产量统计
+// 订单管理统计
 export const getOrderList = (parameter) => {
     return main_server.post('/order/list', parameter)
 }
-// 部门任务
+export const getOrderTypes = (parameter) => {
+    return main_server.get('/order/types', parameter)
+}
+// 任务
 export const getOrderListDepartment = (parameter) => {
     return main_server.post('/order/list/department', parameter)
 }
