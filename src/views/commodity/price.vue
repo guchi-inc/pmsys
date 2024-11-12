@@ -15,6 +15,7 @@ const searchForm = reactive({
     date: getDate(700)
 })
 const editForm = reactive({
+    id: 0,
     material_type_id: '',
     name: '',
     mfrs: '',
@@ -41,8 +42,8 @@ const editRules = reactive({
     material_type_id: [{ required: true, message: '请选择产品类型', trigger: 'change' }],
     name: [{ required: true, message: '请输入产品名称', trigger: 'blur' }],
     mfrs: [{ required: true, message: '请输入生产厂家', trigger: 'blur' }],
-    model: [{ required: true, message: '请输入产品型号', trigger: 'blur' }],
-    standard: [{ required: true, message: '请输入产品规格', trigger: 'blur' }],
+    model: [{ required: false, message: '请输入产品型号', trigger: 'blur' }],
+    standard: [{ required: false, message: '请输入产品规格', trigger: 'blur' }],
     color: [{ required: true, message: '请输入产品颜色', trigger: 'blur' }],
     unit: [{ required: true, message: '请输入产品单位', trigger: 'blur' }],
     remark: [{ required: false, message: '请输入备注', trigger: 'blur' }],

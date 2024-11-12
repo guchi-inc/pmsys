@@ -3,11 +3,13 @@ import { reactive } from 'vue'
 import { getMaterUnitList as getList, newMaterUnit, updateMaterUnit } from '@/api'
 import DatePicker from '@/components/DatePicker.vue'
 import ListPage from '@/components/ListPage.vue'
+import SupplierSelector from '@/components/Selector/supplier.vue'
 import { getDate } from '@/utils'
 const searchForm = reactive({
     name: '',
     serial: '',
     basic_unit: '',
+    date: getDate(700)
 })
 const editForm = reactive({
     id: 0,
@@ -38,6 +40,7 @@ const reset = () => {
     searchForm.name = ''
     searchForm.serial = ''
     searchForm.basic_unit = ''
+    searchForm.date = getDate(700)
 }
 const data = {
     api: getList,
@@ -58,10 +61,14 @@ const data = {
 //     { label: '规格3', prop: 'ratio_three' },
 // ]
 const columns = []
+const dateChange = (val) => {
+    console.log('dateChange: ', val)
+    searchForm.date = val
+}
 </script>
 <template>
-    <ListPage :tableData="data" :tableColumns="columns" dialogTitle="单位" dialogWidth="40%" :editRules="editRules"
-        :hasOperation="true" status-field="enabled" @reset="reset">
+    <ListPage :tableData="data" :tableColumns="columns" dialogTitle="单位" dialogWidth="40%" :editForm="editForm"
+        :editRules="editRules" :hasOperation="true" status-field="enabled" @reset="reset">
         <template #searchForm>
             <el-form-item label="名称" prop="name">
                 <el-input v-model="searchForm.name" placeholder="请输入名称"></el-input>
@@ -72,6 +79,7 @@ const columns = []
             <el-form-item label="序号" prop="serial">
                 <el-input v-model="searchForm.serial" placeholder="请输入单位序号"></el-input>
             </el-form-item>
+            <date-picker :value="searchForm.date" @change="dateChange" />
         </template>
         <template #dialogBody>
             <el-row>
@@ -82,8 +90,8 @@ const columns = []
                     <el-form-item label="基本单位" prop="basic_unit">
                         <el-input v-model="editForm.basic_unit" placeholder="请输入基本单位"></el-input>
                     </el-form-item>
-                    <el-form-item label="合作方ID" prop="tenant_id">
-                        <el-input v-model="editForm.tenant_id" placeholder="合作方ID"></el-input>
+                    <el-form-item label="合作商" prop="tenant_id">
+                        <supplier-selector v-model="editForm.tenant_id" />
                     </el-form-item>
                     <el-form-item label="单位1" prop="other_unit">
                         <el-input v-model="editForm.other_unit" placeholder="请输入单位1"></el-input>

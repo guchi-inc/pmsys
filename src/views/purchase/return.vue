@@ -1,8 +1,9 @@
 <script setup>
 import { reactive, ref } from 'vue'
-import { getOrderAll as getList, OrderPre, NewOrder, UpdateOrder, getSupplierList, getMaterTypesList,getOrderTypes } from '@/api'
+import { getOrderAll as getList, OrderPre, NewOrder, UpdateOrder, getSupplierList, getMaterTypesList, getOrderTypes } from '@/api'
 import DatePicker from '@/components/DatePicker.vue'
 import ListPage from '@/components/ListPage.vue'
+import OrderSelector from '@/components/Selector/order.vue'
 import { getDate } from '@/utils'
 import { useRouter } from 'vue-router'
 const router = useRouter()
@@ -140,6 +141,17 @@ const handleMaterTypeChange = (val) => {
         }
     })
 }
+const orderList = (val) => {
+    if (editForm.order_number !== '' && val.length > 0) {
+        val.forEach(item => {
+            if (item.order_number === editForm.order_number) {
+                editForm.name = item.name
+                editForm.total = item.total
+                editForm.order_type = item.order_type
+            }
+        })
+    }
+}
 getSupplier()
 </script>
 
@@ -156,8 +168,8 @@ getSupplier()
             <el-form-item label="商品类型">
                 <el-input v-model="searchForm.type_name" placeholder="请输入商品类型"></el-input>
             </el-form-item>
-            
-              <el-form-item label="订单类型">
+
+            <el-form-item label="订单类型">
                 <el-input v-model="searchForm.order_type" placeholder="请输入订单类型"></el-input>
             </el-form-item>
             <el-form-item label="合作商">
@@ -188,7 +200,7 @@ getSupplier()
                         </el-select>
                     </el-form-item>
 
-                      <el-form-item label="商品名称">
+                    <el-form-item label="商品名称">
                         <el-input v-model="editForm.name" placeholder="请输入商品名"></el-input>
                     </el-form-item>
 
@@ -208,11 +220,12 @@ getSupplier()
                 <el-col :span="11" :offset="2">
 
                     <el-form-item label="订单号">
-                        <el-input v-model="editForm.order_number" placeholder="请输入订单号"></el-input>
+                        <!-- <el-input v-model="editForm.order_number" placeholder="请输入订单号"></el-input> -->
+                        <order-selector v-model="editForm.order_number" @orderList="orderList" />
                     </el-form-item>
 
                     <el-form-item label="订单类型">
-                     <el-input v-model="editForm.order_type" placeholder="请输入订单类型"></el-input>
+                        <el-input v-model="editForm.order_type" placeholder="请输入订单类型"></el-input>
 
                     </el-form-item>
 
@@ -244,7 +257,7 @@ getSupplier()
         </template>
         <template #action="scope">
             <el-button type="success" plain size="small"
-                @click="router.push('/production_batch?order_number=' + scope.row.order_number)">M</el-button>
+                @click="router.push('/purchase_order?order_number=' + scope.row.order_number)">M</el-button>
         </template>
     </ListPage>
 </template>

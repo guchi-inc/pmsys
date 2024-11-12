@@ -1,13 +1,14 @@
 <script setup>
 import { reactive, ref } from 'vue'
-import { getOrderAll as getList, OrderPre, NewOrder, UpdateOrder, getSupplierList, getMaterTypesList,getOrderTypes } from '@/api'
+import { getOrderAll as getList, OrderPre, NewOrder, UpdateOrder, getSupplierList, getMaterTypesList, getOrderTypes } from '@/api'
 import DatePicker from '@/components/DatePicker.vue'
 import ListPage from '@/components/ListPage.vue'
 import { getDate } from '@/utils'
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
+const route = useRoute()
 const router = useRouter()
 const searchForm = reactive({
-    order_number: '',
+    order_number: route.query.order_number || '',
     pre_batch: '',
     username: '',
     type_name: '',
@@ -156,8 +157,8 @@ getSupplier()
             <el-form-item label="商品类型">
                 <el-input v-model="searchForm.type_name" placeholder="请输入商品类型"></el-input>
             </el-form-item>
-            
-              <el-form-item label="订单类型">
+
+            <el-form-item label="订单类型">
                 <el-input v-model="searchForm.order_type" placeholder="请输入订单类型"></el-input>
             </el-form-item>
             <el-form-item label="合作商">
@@ -188,7 +189,7 @@ getSupplier()
                         </el-select>
                     </el-form-item>
 
-                      <el-form-item label="商品名称">
+                    <el-form-item label="商品名称">
                         <el-input v-model="editForm.name" placeholder="请输入商品名"></el-input>
                     </el-form-item>
 
@@ -212,7 +213,7 @@ getSupplier()
                     </el-form-item>
 
                     <el-form-item label="订单类型">
-                     <el-input v-model="editForm.order_type" placeholder="请输入订单类型"></el-input>
+                        <el-input v-model="editForm.order_type" placeholder="请输入订单类型"></el-input>
 
                     </el-form-item>
 

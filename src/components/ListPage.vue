@@ -57,7 +57,7 @@ const getStatus = (statusType) => {
     const cnameObj = config.pre_define['status_cname'][statusType]
     if (cnameObj === undefined) return null;
     return (row, column, cellValue) => {
-        console.log('getStatus:', row, column, cellValue)
+        // console.log('getStatus:', row, column, cellValue)
         if (column.property == 'status') {
             const status = cnameObj
             // console.log('status:', status, 'cellValue:', cnameObj)
@@ -211,10 +211,14 @@ const tableColumns = computed(() => {
     }
     return props.tableColumns
 })
-const emit = defineEmits(['reset', 'update:editForm', 'update:dialogWidth'])
+const emit = defineEmits(['reset', 'openForm', 'update:editForm', 'update:dialogWidth'])
 const reset = () => {
     emit('reset')
     search()
+}
+
+const openForm = (row) => {
+    emit('openForm')
 }
 
 const resetForm = () => {
@@ -459,7 +463,7 @@ search()
     </div>
     <!-- <div v-dialog-resize> -->
     <el-dialog v-model="dialogVisible" :title="dialogTitle" :width="dialogWidth" :height="dialogHeight"
-        :close-on-click-modal="false" draggable @close="resetForm">
+        :close-on-click-modal="false" draggable @open="openForm" @close="resetForm">
         <el-form :label-width="labelWidth" ref="editFormRef" :model="editForm" :rules="editRules">
             <slot name="dialogBody"></slot>
         </el-form>
