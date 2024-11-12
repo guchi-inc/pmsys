@@ -4,9 +4,9 @@ import { getOrderAll as getList, OrderPre, NewOrder, UpdateOrder, getSupplierLis
 import DatePicker from '@/components/DatePicker.vue'
 import ListPage from '@/components/ListPage.vue'
 import { getDate } from '@/utils'
-import { useRoute, useRouter } from 'vue-router'
+import { useRoute } from 'vue-router'
 const route = useRoute()
-const router = useRouter()
+
 const searchForm = reactive({
     order_number: route.query.order_number || '',
     pre_batch: '',
@@ -243,9 +243,6 @@ getSupplier()
                 </el-col>
             </el-row>
         </template>
-        <template #action="scope">
-            <el-button type="success" plain size="small"
-                @click="router.push('/production_batch?order_number=' + scope.row.order_number)">M</el-button>
-        </template>
+
     </ListPage>
 </template>
