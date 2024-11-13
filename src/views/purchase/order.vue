@@ -4,6 +4,7 @@ import { getOrderAll as getList, OrderPre, NewOrder, UpdateOrder, getSupplierLis
 import DatePicker from '@/components/DatePicker.vue'
 import ListPage from '@/components/ListPage.vue'
 import OrderTypesSelector from '@/components/Selector/ordertypes.vue'
+import StageSelector from '@/components/Selector/stage.vue'
 import { getDate } from '@/utils'
 import { useRoute, useRouter } from 'vue-router'
 const route = useRoute()
@@ -143,8 +144,10 @@ const handleMaterTypeChange = (val) => {
     })
 }
 const openForm = () => {
-    if (editForm.id == 0)
+    if (editForm.id == 0) {
         editForm.order_type = '采购'
+        editForm.stage = '0'
+    }
 }
 getSupplier()
 </script>
@@ -229,12 +232,7 @@ getSupplier()
                     </el-form-item>
 
                     <el-form-item label="阶段" prop="type">
-                        <el-select v-model="editForm['stage']" placeholder="初始">
-                            <el-option label="初始" value="0"></el-option>
-                            <el-option label="生产" value="1"></el-option>
-                            <el-option label="检验" value="2"></el-option>
-                            <el-option label="完成" value="3"></el-option>
-                        </el-select>
+                        <stage-selector v-model="editForm.stage" />
                     </el-form-item>
 
 

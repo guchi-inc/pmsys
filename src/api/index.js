@@ -42,6 +42,20 @@ export const getOrderList = (parameter) => {
 export const getOrderTypes = (parameter) => {
     return main_server.get('/order/types', parameter)
 }
+// 物流
+export const getOrderBatchs = (parameter) => {
+    return main_server.get('/order/batchs', parameter)
+}
+export const NewOrderBatch = (parameter) => {
+    return main_server.post('/order/batch/new', parameter)
+}
+export const UpdateOrderBatch = (parameter) => {
+    return main_server.post('/order/batch/edit', parameter)
+}
+// 评价
+export const getOrderAssess = (parameter) => {
+    return main_server.get('/order/assess/list', parameter)
+}
 // 任务
 export const getOrderListDepartment = (parameter) => {
     return main_server.post('/order/list/department', parameter)

@@ -32,8 +32,8 @@ console.log(props.date)
     <el-select filterable remote remote-show-suffix :remote-method="getOrder" placeholder="请选择订单号">
         <el-option v-for="item in orderList" :key="item.id" :label="item.order_number" :value="item.order_number">
             <el-row>
-                <el-col class="ellipsis" :span="10">{{ item.name }}</el-col>
                 <el-col class="ellipsis" :span="8">{{ item.order_number }}</el-col>
+                <el-col class="ellipsis" :span="10">{{ item.name }}</el-col>
                 <el-col class="ellipsis" :span="3">{{ item.total }}</el-col>
                 <el-col class="ellipsis" :span="3">{{ item.order_type }}</el-col>
             </el-row>

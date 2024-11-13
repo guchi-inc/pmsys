@@ -27,6 +27,7 @@ console.log(props.date)
 </script>
 <template>
     <el-select filterable allow-create remote remote-show-suffix :remote-method="getOrder" placeholder="请选择订单类型">
-        <el-option v-for="item in orderList" :key="item.id" :label="item.type_name" :value="item.type_name"></el-option>
+        <el-option v-for="item in orderList" :key="item.id" :label="item.order_type"
+            :value="item.order_type"></el-option>
     </el-select>
 </template>
